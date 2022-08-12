@@ -1,9 +1,11 @@
 package br.rraminelli.security;
 
+import br.rraminelli.exceptions.ValidacaoException;
 import io.quarkus.arc.Priority;
 import io.smallrye.jwt.auth.principal.*;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.MalformedClaimException;
+import org.jose4j.jwt.NumericDate;
 import org.jose4j.jwt.consumer.InvalidJwtException;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -22,7 +24,10 @@ public class CustomJWTCallerPrincipalFactory extends JWTCallerPrincipalFactory {
             String json = new String(Base64.getUrlDecoder().decode(token.split("\\.")[1]), StandardCharsets.UTF_8);
 
             JwtClaims parse = JwtClaims.parse(json);
-            parse.getExpirationTime();
+
+            if (NumericDate.now().isOnOrAfter(parse.getExpirationTime())) {
+                throw new ParseException("Invalid token");
+            }
 
             return new DefaultJWTCallerPrincipal(parse);
         } catch (InvalidJwtException ex) {
