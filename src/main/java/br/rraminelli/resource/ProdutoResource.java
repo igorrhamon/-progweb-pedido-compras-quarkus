@@ -35,7 +35,9 @@ public class ProdutoResource {
     }
 
     @GET
-    public Response listar(@QueryParam("filtro") String filtro, @QueryParam("page") Integer page, @QueryParam("size") Integer size) {
+    public Response listar(@QueryParam("filtro") @DefaultValue("") String filtro,
+                           @QueryParam("page") @DefaultValue("0") Integer page,
+                           @QueryParam("size") @DefaultValue("20") Integer size) {
         return Response.ok(produtoService.listar(filtro, page, size)).build();
     }
 

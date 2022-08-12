@@ -33,7 +33,7 @@ public class ImportaProdutosArquivo implements ImportaProdutos {
                 .map(linha -> {
                     final String[] linhaArray = linha.split(",");
                     return new Produto(
-                            Long.valueOf(linhaArray[0]),
+                            null,
                             linhaArray[5],
                             linhaArray[2],
                             new BigDecimal(linhaArray[6]),
