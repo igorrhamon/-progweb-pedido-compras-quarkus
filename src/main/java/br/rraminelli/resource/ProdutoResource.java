@@ -4,6 +4,7 @@ import br.rraminelli.model.Produto;
 import br.rraminelli.service.ProdutoService;
 import io.quarkus.security.Authenticated;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.ws.rs.*;
@@ -22,7 +23,7 @@ public class ProdutoResource {
     }
 
     @POST
-    @RolesAllowed("ADMIN")
+    @RolesAllowed({"ADMIN"})
     public Response salvar(@Valid Produto produto) {
         return Response.ok(produtoService.salvar(produto)).build();
     }

@@ -59,7 +59,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
         return ProdutoListDto.builder()
                 .list(produtoPanacheQuery.list())
-                .size(size)
+                .size(produtoPanacheQuery.list().size())
                 .page(page)
                 .total(produtoPanacheQuery.pageCount())
                 .build();

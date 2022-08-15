@@ -14,4 +14,6 @@ public class ProdutoRepository implements PanacheRepositoryBase<Produto, Long> {
         return find("nome like ?1 OR descricao like ?2 ", "%" + filtro + "%", "%" + filtro + "%").page(page);
     }
 
+
+
 }

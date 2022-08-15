@@ -22,12 +22,4 @@ public class JwtUtils {
         return claimsBuilder.jws().signWithSecret(SECRET);
     }
 
-    /*public static boolean isValid(String token) {
-        return Jwt.parser()
-                .setSigningKey(SecurityConstants.SECRET)
-                .parseClaimsJws(token.replace(SecurityConstants.TOKEN_PREFIX, ""))
-                .getBody()
-                .getSubject();
-    }*/
-
 }
